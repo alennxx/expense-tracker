@@ -1,2 +1,19 @@
 <p>expenses-list works!</p>
 <app-expense-details></app-expense-details>
+
+<br><br>
+
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let expense of expenses">
+        <td>{{expense.category}}</td>
+        <td>{{expense.name}}</td>
+        <td>{{expense.amount}}</td>
+        <td>X</td>
+    </tr>
+</table>
