@@ -1,0 +1,29 @@
+<form id="expenseForm" [formGroup]="expenseForm" (ngSubmit)="save()">
+    
+    <div id="expenseName">
+        <label for="name">Expense name: </label>
+        <input id="name" formControlName="name" />
+    </div>
+    
+    <div id="expenseAmount">
+        <label for="amount">Expense amount: </label>
+        <input id="amount" type="number" formControlName="amount"/>
+    </div>
+    
+    <div id="expenseCategory">
+        <label for="category">Expense category: </label>
+        <select id="category" formControlName="category">
+            <option hidden selected></option>
+            <option value="home">Home</option>
+            <option value="food">Food</option>
+            <option value="clothes">Clothes</option>
+            <option value="cat">Cat</option>
+        </select>
+    </div>
+
+    <button type="submit" [disabled]="!expenseForm.valid">Save</button>
+    <button type="reset">Clear</button>
+    
+    <br><br><p>Form status: {{ expenseForm.status }}</p>
+
+</form>

@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        ExpenseFormComponentMock,
+        ExpensesListComponentMock
       ],
     }).compileComponents();
   });
@@ -16,16 +19,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'expense-tracker-front'`, () => {
+  it(`should have as title 'Expense Tracker'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('expense-tracker-front');
+    expect(app.title).toEqual('Expense Tracker');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('expense-tracker-front app is running!');
-  });
 });
+
+@Component({selector: 'app-expense-form', template: ''}) class ExpenseFormComponentMock {}
+@Component({selector: 'app-expenses-list', template: ''}) class ExpensesListComponentMock {}
