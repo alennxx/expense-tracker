@@ -1,10 +1,11 @@
 * {
-    font-family: 'Trebuchet MS';
+    font-family: 'Roboto';
+    color: #666666;
 }
 
 html, body {
     margin: 0px;
-    background-color: bisque;
+    background-image: linear-gradient(to right, #ffcd8f, #ffe4c4);
 }
 
 input, select {
@@ -12,6 +13,13 @@ input, select {
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box; 
     box-sizing:border-box;
+}
+
+h3 {
+    margin: 0;
+    margin-bottom: 30px;
+    font-weight: 300;
+    font-size: 25px;
 }
 
 .child-container {

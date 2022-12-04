@@ -1,34 +1,36 @@
-<form id="expenseForm" [formGroup]="expenseForm" (ngSubmit)="save()">
+<form id="expenseForm" class="white-box" [formGroup]="expenseForm" (ngSubmit)="save()">
 
     <h3>Add new expense</h3>
     
-    <div id="expenseName" class="form-element">
-        <label for="name">Expense name</label>
-        <input id="name" formControlName="name" />
-    </div>
+    <div class="form-container">
+        <div id="expenseName" class="form-element">
+            <label for="name">Expense name</label>
+            <input id="name" formControlName="name" />
+        </div>
+        
+        <div id="expenseAmount" class="form-element">
+            <label for="amount">Expense amount</label>
+            <input id="amount" type="number" formControlName="amount"/>
+        </div>
+        
+        <div id="expenseCategory" class="form-element">
+            <label for="category">Expense category</label>
+            <select id="category" formControlName="category">
+                <option hidden selected></option>
+                <option value="home">Home</option>
+                <option value="food">Food</option>
+                <option value="clothes">Clothes</option>
+                <option value="cat">Cat</option>
+                <!-- TODO read categories from service -->
+            </select>
+        </div>
     
-    <div id="expenseAmount" class="form-element">
-        <label for="amount">Expense amount</label>
-        <input id="amount" type="number" formControlName="amount"/>
-    </div>
+        <!-- TODO add error message about invalid input -->
     
-    <div id="expenseCategory" class="form-element">
-        <label for="category">Expense category</label>
-        <select id="category" formControlName="category">
-            <option hidden selected></option>
-            <option value="home">Home</option>
-            <option value="food">Food</option>
-            <option value="clothes">Clothes</option>
-            <option value="cat">Cat</option>
-            <!-- TODO read categories from service -->
-        </select>
-    </div>
-
-    <!-- TODO add error message about invalid input -->
-
-    <div class="form-buttons-container">
-        <button class="submit-button" type="submit" [disabled]="!expenseForm.valid">Save</button>
-        <button class="clear-button" type="reset">Clear</button>
+        <div class="form-buttons-container">
+            <button class="submit-button" type="submit" [disabled]="!expenseForm.valid">Add expense</button>
+            <button class="clear-button" type="reset">Clear</button>
+        </div>
     </div>
 
 </form>

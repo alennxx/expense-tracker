@@ -1,5 +1,25 @@
+@import '../../../../colors.scss';
+
+h3 {
+    padding: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: $primary;
+    color: #fff;
+}
+
 form {
     width: 500px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 3px solid $primary;
+}
+
+.form-container {
+    padding: 30px;
+    padding-top: 0;
 }
 
 .form-element {
@@ -11,17 +31,24 @@ form {
     label {
         margin-bottom: 8px;
         font-size: small;
+        font-weight: 300;
     }
 
     select, input {
         width: 100%;
         margin: 0;
         padding: 0;
-        border: 1px solid black;
+        border: 1px solid $secondary;
         border-radius: 5px;
         padding: 6px;
         font-size: medium;
         letter-spacing: 0.5px;
+        background-color: $secondary;
+
+        &:focus {
+            outline: none;
+            border: 1px solid $primary;
+        }
     }
 }
 
@@ -42,11 +69,10 @@ form {
     .submit-button {
         padding: 5px 15px;
         width: 50%;
-        background-color: rgb(233, 150, 122);
+        background-color: $primary;
         border: none;
         border-radius: 5px;
         color: white;
-        font-weight: bold;
         font-size: medium;
 
         &:disabled {
@@ -55,7 +81,7 @@ form {
         }
 
         &:enabled:hover {
-            background-color: rgb(173, 112, 91);
+            background-color: $primary-dark;
         }
 
     }
@@ -71,4 +97,3 @@ form {
     }
 
 }
-
