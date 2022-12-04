@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, of, Subscriber } from "rxjs";
 import { Expense, ExpenseProperties } from "../model/expense";
 
 @Injectable({
@@ -55,6 +55,11 @@ export class ExpenseService {
         subscriber.next(expense);
         subscriber.complete();
       });
+    }
+
+    deleteExpense(expenseId: number): void {
+      const newExpenses = this.expensesSubject.getValue().filter(expense => expense.id !== expenseId);
+      this.expensesSubject.next(newExpenses);
     }
     
 }

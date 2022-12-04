@@ -17,5 +17,11 @@ export class ExpensesOverviewComponent implements OnInit {
   ngOnInit(): void {
     this.expenses$ = this.expenseService.findAllExpenses();
   }
+
+  deleteExpense(expense: Expense) {
+    if (confirm(`Are you sure you want to delete "${expense.name}"?`)) {
+      this.expenseService.deleteExpense(expense.id);
+    }
+  }
   
 }

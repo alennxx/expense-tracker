@@ -13,6 +13,6 @@
         <td>{{expense.category}}</td>
         <td>{{expense.name}}</td>
         <td>{{expense.amount}}</td>
-        <td>X</td>
+        <td (click)="deleteExpense(expense)">X</td>
     </tr>
 </table>
