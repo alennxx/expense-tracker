@@ -1,9 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BuiltinType } from '@angular/compiler';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ExpenseDetailsComponent } from './expense-details.component';
 
 describe('ExpenseDetailsComponent', () => {
+
   let component: ExpenseDetailsComponent;
   let fixture: ComponentFixture<ExpenseDetailsComponent>;
   let element: HTMLElement;
@@ -26,7 +28,6 @@ describe('ExpenseDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 
   describe('form structure', () => {
 
@@ -268,6 +269,17 @@ describe('ExpenseDetailsComponent', () => {
         const submitButton = form.querySelector('button[type="submit"') as HTMLButtonElement;
         expect(submitButton.disabled).toBeFalse();
       });
+
+      it('call save expense', fakeAsync(() => {
+        component.expenseForm.setValue(validFormValue);
+        fixture.detectChanges();
+        spyOn(component, 'save');
+
+        const submitButton = form.querySelector('button[type="submit"') as HTMLButtonElement;
+        submitButton.click();
+        tick();
+        expect(component.save).toHaveBeenCalled();
+      }));
 
     });
 

@@ -7,8 +7,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ExpenseFormComponentMock,
-        ExpensesListComponentMock
+        ExpensesOverviewComponentMock
       ],
     }).compileComponents();
   });
@@ -27,5 +26,4 @@ describe('AppComponent', () => {
 
 });
 
-@Component({selector: 'app-expense-form', template: ''}) class ExpenseFormComponentMock {}
-@Component({selector: 'app-expenses-list', template: ''}) class ExpensesListComponentMock {}
+@Component({selector: 'app-expenses-overview', template: ''}) class ExpensesOverviewComponentMock {}

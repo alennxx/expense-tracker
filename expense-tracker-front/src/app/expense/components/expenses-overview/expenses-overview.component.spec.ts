@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpensesOverviewComponent } from './expenses-overview.component';
@@ -8,7 +9,10 @@ describe('ExpensesOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpensesOverviewComponent ]
+      declarations: [
+        ExpensesOverviewComponent,
+        ExpenseDetailsComponentMock
+      ]
     })
     .compileComponents();
 
@@ -21,3 +25,5 @@ describe('ExpensesOverviewComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+@Component({selector: 'app-expense-details', template: ''}) class ExpenseDetailsComponentMock {}
