@@ -20,8 +20,11 @@
             <option value="food">Food</option>
             <option value="clothes">Clothes</option>
             <option value="cat">Cat</option>
+            <!-- TODO read categories from service -->
         </select>
     </div>
+
+    <!-- TODO add error message about invalid input -->
 
     <div class="form-buttons-container">
         <button class="submit-button" type="submit" [disabled]="!expenseForm.valid">Save</button>
