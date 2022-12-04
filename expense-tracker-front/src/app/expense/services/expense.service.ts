@@ -13,34 +13,41 @@ export class ExpenseService {
           id: this.idSeq++,
           name: 'Catnip',
           amount: 10.0,
-          category: 'cat'
+          category: 'Cat'
         },
         {
           id: this.idSeq++,
           name: 'Bread and cheese',
           amount: 13.46,
-          category: 'food'
+          category: 'Food'
         },
         {
           id: this.idSeq++,
           name: 'Chocolate',
           amount: 4.99,
-          category: 'food'
+          category: 'Food'
         },
         {
           id: this.idSeq++,
           name: 'Candles',
           amount: 89.99,
-          category: 'home'
+          category: 'Home'
         },
         {
           id: this.idSeq++,
           name: 'Winter gloves',
           amount: 54.99,
-          category: 'clothes'
+          category: 'Clothes'
         },
       ];
+    private readonly mockExpenseCategories: string[] = [
+      "Cat",
+      "Food",
+      "Clothes",
+      "Home"
+    ];
     private readonly expensesSubject = new BehaviorSubject<Expense[]>(this.mockExpenses);
+    private readonly expenseCategoriesSubject = new BehaviorSubject<string[]>(this.mockExpenseCategories);
 
     findAllExpenses(): Observable<Expense[]> {
         return this.expensesSubject.asObservable();
@@ -60,6 +67,10 @@ export class ExpenseService {
     deleteExpense(expenseId: number): void {
       const newExpenses = this.expensesSubject.getValue().filter(expense => expense.id !== expenseId);
       this.expensesSubject.next(newExpenses);
+    }
+
+    findAllCategories(): Observable<string[]> {
+      return this.expenseCategoriesSubject.asObservable();
     }
     
 }

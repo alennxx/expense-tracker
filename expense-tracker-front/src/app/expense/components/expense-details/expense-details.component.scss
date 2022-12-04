@@ -23,7 +23,7 @@ form {
 }
 
 .form-element {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -96,4 +96,14 @@ form {
         }
     }
 
+}
+
+.form-element-errors {
+    height: 16px;
+    margin-top: 5px;
+
+    .form-error {
+        font-size: x-small;
+        color: red;  
+    }
 }

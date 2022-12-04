@@ -80,7 +80,7 @@ describe('ExpenseDetailsComponent', () => {
     it('submit form button', () => {
       const submitButton = element.querySelector('button[type="submit"]');
       expect(submitButton).toBeTruthy();
-      expect(submitButton?.textContent).toEqual('Save');
+      expect(submitButton?.textContent).toEqual('Add expense');
     });
 
     it('clear form button', () => {
