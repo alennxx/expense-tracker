@@ -1,0 +1,24 @@
+* {
+    font-family: 'Trebuchet MS';
+}
+
+html, body {
+    margin: 0px;
+    background-color: bisque;
+}
+
+input, select {
+    -ms-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box; 
+    box-sizing:border-box;
+}
+
+.child-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+

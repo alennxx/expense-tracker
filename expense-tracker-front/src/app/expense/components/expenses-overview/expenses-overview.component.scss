@@ -1,0 +1,33 @@
+.overview-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    border-radius: 8px;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgb(233, 150, 122);
+    padding: 8px;
+    text-align: left;
+}
+
+tr {
+    background-color: white;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(243, 243, 243);
+}
+
+td {
+    padding: 8px;
+}
+
+.delete-item-button:hover {
+    cursor: pointer;
+    color: rgb(173, 112, 91);
+}

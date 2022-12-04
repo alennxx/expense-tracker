@@ -1,18 +1,21 @@
-<app-expense-details></app-expense-details>
+<div class="overview-container">
 
-<br><br>
+    <app-expense-details class="child-container"></app-expense-details>
 
-<table>
-    <tr>
-        <th>Category</th>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Action</th>
-    </tr>
-    <tr *ngFor="let expense of (expenses$ | async)">
-        <td>{{expense.category}}</td>
-        <td>{{expense.name}}</td>
-        <td>{{expense.amount}}</td>
-        <td (click)="deleteExpense(expense)">X</td>
-    </tr>
-</table>
+    <h3>Your expenses</h3>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let expense of (expenses$ | async)">
+            <td>{{expense.category}}</td>
+            <td>{{expense.name}}</td>
+            <td>{{expense.amount}}</td>
+            <td (click)="deleteExpense(expense)"><span class="delete-item-button">delete</span></td>
+        </tr>
+    </table>
+
+</div>
