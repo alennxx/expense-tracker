@@ -42,7 +42,7 @@ describe('ExpenseDetailsComponent', () => {
 
       const nameLabel = nameSection?.querySelector('label');
       expect(nameLabel).toBeTruthy();
-      expect(nameLabel?.textContent).toEqual('Expense name: ');
+      expect(nameLabel?.textContent).toEqual('Expense name');
       
       const nameInput = nameSection?.querySelector('input');
       expect(nameInput).toBeTruthy();
@@ -56,7 +56,7 @@ describe('ExpenseDetailsComponent', () => {
 
       const amountLabel = amountSection?.querySelector('label');
       expect(amountLabel).toBeTruthy();
-      expect(amountLabel?.textContent).toEqual('Expense amount: ');
+      expect(amountLabel?.textContent).toEqual('Expense amount');
 
       const amountInput = amountSection?.querySelector('input');
       expect(amountInput).toBeTruthy();
@@ -70,7 +70,7 @@ describe('ExpenseDetailsComponent', () => {
 
       const categoryLabel = categorySection?.querySelector('label');
       expect(categoryLabel).toBeTruthy();
-      expect(categoryLabel?.textContent).toEqual('Expense category: ');
+      expect(categoryLabel?.textContent).toEqual('Expense category');
 
       const categorySelect = categorySection?.querySelector('select');
       expect(categorySelect).toBeTruthy();
