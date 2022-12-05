@@ -1,4 +1,4 @@
-package com.natgx.expensetrackerback.expense.category.dto;
+package com.natgx.expensetrackerback.expenses.category.dto;
 
-public record ExpenseCategoryDto(String name) {
+public record ExpenseCategoryDto(long id, String name) {
 }

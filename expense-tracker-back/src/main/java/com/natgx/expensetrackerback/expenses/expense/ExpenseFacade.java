@@ -1,7 +1,7 @@
-package com.natgx.expensetrackerback.expense;
+package com.natgx.expensetrackerback.expenses.expense;
 
-import com.natgx.expensetrackerback.expense.category.ExpenseCategory;
-import com.natgx.expensetrackerback.expense.dto.ExpenseDto;
+import com.natgx.expensetrackerback.expenses.category.ExpenseCategory;
+import com.natgx.expensetrackerback.expenses.expense.dto.ExpenseDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +20,10 @@ public class ExpenseFacade {
     }
 
     public void createExpense(ExpenseDto expenseDto) {
-        ExpenseCategory category = ExpenseCategory.builder().name(expenseDto.category().name()).build();
+        ExpenseCategory category = ExpenseCategory.builder()
+                .id(expenseDto.category().id())
+                .name(expenseDto.category().name())
+                .build();
         Expense expense = Expense.builder()
                 .name(expenseDto.name())
                 .amount(expenseDto.amount())

@@ -1,8 +1,8 @@
-package com.natgx.expensetrackerback.expense.dto;
+package com.natgx.expensetrackerback.expenses.expense.dto;
 
-import com.natgx.expensetrackerback.expense.category.dto.ExpenseCategoryDto;
+import com.natgx.expensetrackerback.expenses.category.dto.ExpenseCategoryDto;
 
 import java.math.BigDecimal;
 
-public record ExpenseDto(String name, BigDecimal amount, ExpenseCategoryDto category) {
+public record ExpenseDto(long id, String name, BigDecimal amount, ExpenseCategoryDto category) {
 }

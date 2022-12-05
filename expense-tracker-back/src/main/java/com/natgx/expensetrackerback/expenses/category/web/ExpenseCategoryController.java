@@ -1,9 +1,7 @@
-package com.natgx.expensetrackerback.expense.category.web;
+package com.natgx.expensetrackerback.expenses.category.web;
 
-import com.natgx.expensetrackerback.expense.ExpenseFacade;
-import com.natgx.expensetrackerback.expense.category.ExpenseCategoryFacade;
-import com.natgx.expensetrackerback.expense.category.dto.ExpenseCategoryDto;
-import com.natgx.expensetrackerback.expense.dto.ExpenseDto;
+import com.natgx.expensetrackerback.expenses.category.ExpenseCategoryFacade;
+import com.natgx.expensetrackerback.expenses.category.dto.ExpenseCategoryDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +18,7 @@ public class ExpenseCategoryController {
     ExpenseCategoryFacade expenseCategoryFacade;
 
     @GetMapping
-    List<ExpenseCategoryDto> findCategories() {
+    public List<ExpenseCategoryDto> findCategories() {
         return expenseCategoryFacade.findExpenseCategories();
     }
 

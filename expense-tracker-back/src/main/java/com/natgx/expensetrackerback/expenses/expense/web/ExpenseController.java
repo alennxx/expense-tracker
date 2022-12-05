@@ -1,7 +1,7 @@
-package com.natgx.expensetrackerback.expense.web;
+package com.natgx.expensetrackerback.expenses.expense.web;
 
-import com.natgx.expensetrackerback.expense.ExpenseFacade;
-import com.natgx.expensetrackerback.expense.dto.ExpenseDto;
+import com.natgx.expensetrackerback.expenses.expense.ExpenseFacade;
+import com.natgx.expensetrackerback.expenses.expense.dto.ExpenseDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

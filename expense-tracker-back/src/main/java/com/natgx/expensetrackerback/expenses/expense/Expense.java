@@ -1,7 +1,7 @@
-package com.natgx.expensetrackerback.expense;
+package com.natgx.expensetrackerback.expenses.expense;
 
-import com.natgx.expensetrackerback.expense.category.ExpenseCategory;
-import com.natgx.expensetrackerback.expense.dto.ExpenseDto;
+import com.natgx.expensetrackerback.expenses.category.ExpenseCategory;
+import com.natgx.expensetrackerback.expenses.expense.dto.ExpenseDto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -22,10 +22,10 @@ public class Expense {
     String name;
     BigDecimal amount;
 
-    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @ManyToOne(cascade = { CascadeType.MERGE })
     ExpenseCategory category;
 
     ExpenseDto dto() {
-        return new ExpenseDto(name, amount, category.dto());
+        return new ExpenseDto(id, name, amount, category.dto());
     }
 }

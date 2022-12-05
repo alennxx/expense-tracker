@@ -1,15 +1,10 @@
-package com.natgx.expensetrackerback.expense;
+package com.natgx.expensetrackerback.expenses.expense;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ExpenseConfiguration {
-
-    public ExpenseFacade expenseFacade() {
-        ExpenseRepository repository = new InMemoryExpenseRepository();
-        return expenseFacade(repository);
-    }
 
     @Bean
     public ExpenseFacade expenseFacade(ExpenseRepository expenseRepository) {

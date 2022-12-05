@@ -1,6 +1,6 @@
-package com.natgx.expensetrackerback.expense.category;
+package com.natgx.expensetrackerback.expenses.category;
 
-import com.natgx.expensetrackerback.expense.category.dto.ExpenseCategoryDto;
+import com.natgx.expensetrackerback.expenses.category.dto.ExpenseCategoryDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,13 +16,6 @@ public class ExpenseCategoryFacade {
 
     public List<ExpenseCategoryDto> findExpenseCategories() {
         return expenseCategoryRepository.findAll().stream().map(ExpenseCategory::dto).collect(Collectors.toList());
-    }
-
-    public void createExpenseCategory(ExpenseCategoryDto expenseCategoryDto) {
-        ExpenseCategory expenseCategory = ExpenseCategory.builder()
-                .name(expenseCategoryDto.name())
-                .build();
-        expenseCategoryRepository.save(expenseCategory);
     }
 
 }

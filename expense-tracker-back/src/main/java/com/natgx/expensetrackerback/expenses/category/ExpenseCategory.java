@@ -1,6 +1,6 @@
-package com.natgx.expensetrackerback.expense.category;
+package com.natgx.expensetrackerback.expenses.category;
 
-import com.natgx.expensetrackerback.expense.category.dto.ExpenseCategoryDto;
+import com.natgx.expensetrackerback.expenses.category.dto.ExpenseCategoryDto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,10 +19,11 @@ public class ExpenseCategory {
     Long id;
 
     @Column(unique = true)
+    @Getter
     String name;
 
     public ExpenseCategoryDto dto() {
-        return new ExpenseCategoryDto(name);
+        return new ExpenseCategoryDto(id, name);
     }
 
 }
