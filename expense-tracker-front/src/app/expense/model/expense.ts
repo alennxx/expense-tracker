@@ -1,8 +1,8 @@
+import { ExpenseCategory } from "./expense-category";
+
 export interface Expense {
-    id: number;
+    id?: number;
     name: string;
     amount: number;
-    category: string;
+    category: ExpenseCategory;
 }
-
-export type ExpenseProperties = Omit<Expense, 'id'>;

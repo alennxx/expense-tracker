@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, Subject, takeUntil } from 'rxjs';
 import { emptyTextValidator } from 'src/app/validators/emptyTextValidator';
-import { Expense, ExpenseProperties } from '../../model/expense';
+import { Expense } from '../../model/expense';
+import { ExpenseCategory } from '../../model/expense-category';
 import { ExpenseService } from '../../services/expense.service';
 
 @Component({
@@ -12,19 +13,20 @@ import { ExpenseService } from '../../services/expense.service';
 })
 export class ExpenseDetailsComponent implements OnInit, OnDestroy {
 
-  expenseForm = new FormGroup({
-    name: new FormControl('', [emptyTextValidator()]),
-    amount: new FormControl('', [Validators.required, Validators.min(0)]),
-    category: new FormControl('', [Validators.required])
-  });
-  expenseCategories$: Observable<string[]> = of([]);
+  expenseForm!: FormGroup;
+  expenseCategories$: Observable<ExpenseCategory[]> = of([]);
 
   private readonly unsubscribe = new Subject<void>();
 
-  constructor(private expenseService: ExpenseService) { }
+  constructor(private expenseService: ExpenseService, private readonly formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.expenseCategories$ = this.expenseService.findAllCategories();
+    this.expenseForm = this.formBuilder.group({
+      name: new FormControl('', [emptyTextValidator()]),
+      amount: new FormControl('', [Validators.required, Validators.min(0)]),
+      category: new FormControl('', [Validators.required])
+    });
   }
 
   ngOnDestroy(): void {
@@ -34,7 +36,7 @@ export class ExpenseDetailsComponent implements OnInit, OnDestroy {
 
   save() {
     const amount = this.expenseForm.value.amount;
-    const expense: ExpenseProperties = {
+    const expense: Expense = {
       name: this.expenseForm.value.name ?? '',
       amount: amount ? parseFloat(amount) : 0,
       category: this.expenseForm.value.category ?? ''

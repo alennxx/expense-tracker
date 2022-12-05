@@ -28,7 +28,7 @@
             <label for="category">Expense category</label>
             <select id="category" formControlName="category">
                 <option hidden selected></option>
-                <option *ngFor="let expCategory of (expenseCategories$ | async)">{{expCategory}}</option>
+                <option *ngFor="let expCategory of (expenseCategories$ | async)" [ngValue]="expCategory">{{expCategory.name}}</option>
             </select>
             <div class="form-element-errors">
                 <div *ngIf="category && category.invalid && (category.dirty || category.touched)">

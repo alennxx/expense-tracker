@@ -1,76 +1,64 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of, Subscriber } from "rxjs";
-import { Expense, ExpenseProperties } from "../model/expense";
+import { BehaviorSubject, Observable, catchError, of, tap } from "rxjs";
+import { Expense } from "../model/expense";
+import { ExpenseCategory } from "../model/expense-category";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ExpenseService {
-  private idSeq = 1;
 
-    private readonly mockExpenses: Expense[] = [
-        {
-          id: this.idSeq++,
-          name: 'Catnip',
-          amount: 10.0,
-          category: 'Cat'
-        },
-        {
-          id: this.idSeq++,
-          name: 'Bread and cheese',
-          amount: 13.46,
-          category: 'Food'
-        },
-        {
-          id: this.idSeq++,
-          name: 'Chocolate',
-          amount: 4.99,
-          category: 'Food'
-        },
-        {
-          id: this.idSeq++,
-          name: 'Candles',
-          amount: 89.99,
-          category: 'Home'
-        },
-        {
-          id: this.idSeq++,
-          name: 'Winter gloves',
-          amount: 54.99,
-          category: 'Clothes'
-        },
-      ];
-    private readonly mockExpenseCategories: string[] = [
-      "Cat",
-      "Food",
-      "Clothes",
-      "Home"
-    ];
-    private readonly expensesSubject = new BehaviorSubject<Expense[]>(this.mockExpenses);
-    private readonly expenseCategoriesSubject = new BehaviorSubject<string[]>(this.mockExpenseCategories);
+    private readonly expensesSubject = new BehaviorSubject<Expense[]>([]);
 
-    findAllExpenses(): Observable<Expense[]> {
-        return this.expensesSubject.asObservable();
+    private readonly baseUrl = 'http://localhost:8080';
+    private readonly expensesUrl = `${this.baseUrl}/expenses`;
+    private readonly expenseCategoriesUrl = `${this.baseUrl}/expense-categories`;
+
+    constructor(private httpClient: HttpClient) { }
+
+    getFindAllExpensesObservable(): Observable<Expense[]> {
+      return this.expensesSubject.asObservable();
+    }
+    
+    fetchAllExpenses() {
+        this.httpClient.get<Expense[]>(this.expensesUrl)
+          .pipe(catchError(this.handleError<Expense[]>('findAllExpenses', [])))
+          .subscribe(expenses => this.expensesSubject.next(expenses));
     }
 
-    saveExpense(newExpense: ExpenseProperties): Observable<Expense> {
-      return new Observable<Expense>(subscriber => {
-        const expense = {...newExpense, id: this.idSeq++};
-        const currentExpenses = this.expensesSubject.getValue();
-        const newExpenses = [...currentExpenses, expense];
-        this.expensesSubject.next(newExpenses);
-        subscriber.next(expense);
-        subscriber.complete();
-      });
+    saveExpense(newExpense: Expense): Observable<Expense> {
+      return this.httpClient.post<Expense>(this.expensesUrl, newExpense)
+        .pipe(
+          tap(expense => {
+            const currentExpenses = this.expensesSubject.getValue();
+            const newExpenses = [...currentExpenses, expense];
+            this.expensesSubject.next(newExpenses);
+          }),
+          catchError(this.handleError('saveExpense', newExpense))
+        );
     }
 
     deleteExpense(expenseId: number): void {
-      const newExpenses = this.expensesSubject.getValue().filter(expense => expense.id !== expenseId);
-      this.expensesSubject.next(newExpenses);
+      this.httpClient.delete(`${this.expensesUrl}/${expenseId}`)
+        .subscribe(() => {
+          const newExpenses = this.expensesSubject.getValue().filter(expense => expense.id !== expenseId);
+          this.expensesSubject.next(newExpenses);
+        });
     }
 
-    findAllCategories(): Observable<string[]> {
-      return this.expenseCategoriesSubject.asObservable();
+    findAllCategories(): Observable<ExpenseCategory[]> {
+      return this.httpClient.get<ExpenseCategory[]>(this.expenseCategoriesUrl)
+        .pipe(
+          catchError(this.handleError<ExpenseCategory[]>('findAllCategories', []))
+        );
+    }
+
+    private handleError<T>(operation = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+        console.error(`${operation}: ${error}`);
+        return of(result as T);
+      };
     }
     
 }
