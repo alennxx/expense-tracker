@@ -1,0 +1,46 @@
+<form id="expenseForm" class="white-box" [formGroup]="expenseForm" (ngSubmit)="save()">
+
+    <h3>Add new expense</h3>
+    
+    <div class="form-container">
+        <div id="expenseName" class="form-element">
+            <label for="name">Expense name</label>
+            <input id="name" formControlName="name" />
+            <div class="form-element-errors">
+                <div *ngIf="name && name.invalid && (name.dirty || name.touched)">
+                    <div class="form-error" *ngIf="name.errors?.['emptyText']">Name is required.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="expenseAmount" class="form-element">
+            <label for="amount">Expense amount</label>
+            <input id="amount" type="number" formControlName="amount"/>
+            <div class="form-element-errors">
+                <div *ngIf="amount && amount.invalid && (amount.dirty || amount.touched)" >
+                    <div class="form-error" *ngIf="amount.errors?.['required']">Amount is required.</div>
+                    <div class="form-error" *ngIf="amount.errors?.['min']">Amount must be positive.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="expenseCategory" class="form-element">
+            <label for="category">Expense category</label>
+            <select id="category" formControlName="category">
+                <option hidden selected></option>
+                <option *ngFor="let expCategory of (expenseCategories$ | async)">{{expCategory}}</option>
+            </select>
+            <div class="form-element-errors">
+                <div *ngIf="category && category.invalid && (category.dirty || category.touched)">
+                    <div class="form-error" *ngIf="category.errors?.['required']">Category is required.</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-buttons-container">
+            <button class="submit-button" type="submit" [disabled]="!expenseForm.valid">Add expense</button>
+            <button class="clear-button" type="reset">Clear</button>
+        </div>
+    </div>
+
+</form>

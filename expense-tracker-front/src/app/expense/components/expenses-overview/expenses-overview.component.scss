@@ -1,0 +1,68 @@
+@import '../../../../colors.scss';
+
+.overview-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    font-size: 45px;
+    font-weight: 200;
+    text-align: center;
+}
+
+table {
+    border-radius: 8px;
+    border-collapse: collapse;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+th {
+    background-color: $primary;
+    padding: 10px;
+    color: #fff;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: left;
+
+    &:first-of-type {
+        border-top-left-radius: 20px;
+    }
+
+    &:last-of-type {
+        border-top-right-radius: 20px;
+        text-align: center;
+    }
+}
+
+tr {
+    background-color: white;
+
+    &:nth-child(even) {
+        background-color: rgb(243, 243, 243);
+    }
+
+    &:last-of-type {
+        border-bottom: 2px solid $primary;
+    }
+}
+
+td {
+    padding: 8px;
+}
+
+.delete-cell {
+    text-align: center;
+
+    i {
+        font-size: 20px;
+
+        &:hover {
+            cursor: pointer;
+            color: $primary;
+        }
+    }
+}
