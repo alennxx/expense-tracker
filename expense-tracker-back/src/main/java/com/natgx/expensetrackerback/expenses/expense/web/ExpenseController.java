@@ -22,10 +22,13 @@ public class ExpenseController {
     }
 
     @PostMapping
-    void createExpense(@RequestBody ExpenseDto expense) {
-        expenseFacade.createExpense(expense);
+    ExpenseDto createExpense(@RequestBody ExpenseDto expense) {
+        return expenseFacade.createExpense(expense);
     }
 
-    //TODO delete
+    @DeleteMapping("/{id}")
+    void deleteExpense(@PathVariable Long id) {
+        expenseFacade.deleteById(id);
+    }
 
 }

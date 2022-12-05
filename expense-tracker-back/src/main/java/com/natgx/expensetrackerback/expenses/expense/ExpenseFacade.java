@@ -19,7 +19,7 @@ public class ExpenseFacade {
         return expenseRepository.findAll().stream().map(Expense::dto).collect(Collectors.toList());
     }
 
-    public void createExpense(ExpenseDto expenseDto) {
+    public ExpenseDto createExpense(ExpenseDto expenseDto) {
         ExpenseCategory category = ExpenseCategory.builder()
                 .id(expenseDto.category().id())
                 .name(expenseDto.category().name())
@@ -29,7 +29,13 @@ public class ExpenseFacade {
                 .amount(expenseDto.amount())
                 .category(category)
                 .build();
-        expenseRepository.save(expense);
+        return expenseRepository.save(expense).dto();
+    }
+
+    public void deleteById(Long id) {
+        if (expenseRepository.existsById(id)) {
+            expenseRepository.deleteById(id);
+        }
     }
 
 }
