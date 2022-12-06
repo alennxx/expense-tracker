@@ -11,7 +11,7 @@
             <th>Action</th>
         </tr>
         <tr *ngFor="let expense of (expenses$ | async)">
-            <td>{{expense.category}}</td>
+            <td>{{expense.category.name}}</td>
             <td>{{expense.name}}</td>
             <td>{{expense.amount | number: '2.2-2'}} zł</td>
             <td class="delete-cell"><i (click)="deleteExpense(expense)" class="fa fa-trash"></i></td>
