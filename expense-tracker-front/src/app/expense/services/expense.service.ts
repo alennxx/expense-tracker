@@ -11,7 +11,7 @@ export class ExpenseService {
 
     private readonly expensesSubject = new BehaviorSubject<Expense[]>([]);
 
-    private readonly baseUrl = 'http://localhost:8080';
+    private readonly baseUrl = 'http://localhost:8080/expense-tracker-back';
     private readonly expensesUrl = `${this.baseUrl}/expenses`;
     private readonly expenseCategoriesUrl = `${this.baseUrl}/expense-categories`;
 
